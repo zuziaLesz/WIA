@@ -1,0 +1,35 @@
+0x00: Set video mode
+0x02: Set cursor position
+0x09: Write character and attribute at cursor position
+0x0A: Read character and attribute at cursor position
+0x0E: Teletype output (as in the provided code)
+
+Jumps Based on Flags:
+
+JZ (Jump if Zero): Jumps if the Zero Flag (ZF) is set.
+JNZ (Jump if Not Zero): Jumps if the Zero Flag (ZF) is not set.
+JC (Jump if Carry): Jumps if the Carry Flag (CF) is set.
+JNC (Jump if No Carry): Jumps if the Carry Flag (CF) is not set.
+JS (Jump if Sign): Jumps if the Sign Flag (SF) is set.
+JNS (Jump if No Sign): Jumps if the Sign Flag (SF) is not set.
+JO (Jump if Overflow): Jumps if the Overflow Flag (OF) is set.
+JNO (Jump if No Overflow): Jumps if the Overflow Flag (OF) is not set.
+Conditional Jumps:
+
+JA (Jump if Above): Jumps if above (unsigned comparison).
+JAE (Jump if Above or Equal): Jumps if above or equal (unsigned comparison).
+JB (Jump if Below): Jumps if below (unsigned comparison).
+JBE (Jump if Below or Equal): Jumps if below or equal (unsigned comparison).
+JE (Jump if Equal): Jumps if equal.
+JNE (Jump if Not Equal): Jumps if not equal.
+JG (Jump if Greater): Jumps if greater (signed comparison).
+JGE (Jump if Greater or Equal): Jumps if greater or equal (signed comparison).
+JL (Jump if Less): Jumps if less (signed comparison).
+JLE (Jump if Less or Equal): Jumps if less or equal (signed comparison).
+Unconditional Jumps:
+
+JMP (Jump): Unconditionally jumps to the specified address.
+Looping Instructions:
+
+LOOP: Decrements the counter in CX and jumps to the specified address if CX is not zero.
+LOOPE/LOOPZ: Same as LOOP but with an additional condition (jumps if ZF is set).

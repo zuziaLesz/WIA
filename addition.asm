@@ -8,7 +8,7 @@ petla:
 loop petla
 
 
-mov ax, 4c00h
+mov ax, 4c00h ; program requested to terminate
 int 21h
 
 readnum:
@@ -20,9 +20,9 @@ mov bx, 0
 .reading:
     mov ah, 1
     int 21h
-    cmp al, 13
+    cmp al, 13   ;13- enter - w al przechowywany przycis?
     je .koniec
-    sub al, '0'
+    sub al, '0'  ; '0' - zmiana znaku na liczbe
     mov ah, 0
     mov cx, ax
     ; w cx,  wczytana cyfra

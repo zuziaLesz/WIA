@@ -1,42 +1,41 @@
 org 100h
+call readnum
+mov cx, ax
+petla:
+    mov ah, 2
+    mov dl, '#'
+    int 21h
+loop petla
 
-
-mov AX, [a]
-mov CX, 2
-mul CX
-
-mov BX, AX
-
-mov AX, [b]
-mov CX, 3
-mul CX
-
-add BX, AX
-
-mov [y], BX; liczba do wypisania
-
-mov cx, 5
-poczatek:	
-	mov dx, 0
-	mov ax, bx ;to dodalem
-	mov bx, 10
-	div bx
-	;  l -  w ax jest wynik dzielenia
-	push dx  ; r - reszta
-	mov bx, ax ;to dodalem
-loop poczatek
-
-mov cx, 5
-wypisz:
-	pop DX
-	add DX, '0'
-	mov AH, 02h
-	int 21h
-loop wypisz
 
 mov ax, 4c00h
 int 21h
 
-a dw 0x07
-b dw 0x03
-y dw 0x0
+readnum:
+; jako ze nie mamy zadnych argumentow, to nawet nie musimy robic tej preambuly z ustawianiem bp
+push bx
+push cx
+push dx
+mov bx, 0
+.reading:
+    mov ah, 1
+    int 21h
+    cmp al, 13
+    je .koniec
+    sub al, '0'
+    mov ah, 0
+    mov cx, ax
+    ; w cx,  wczytana cyfra
+    mov ax, 10
+    mul bx
+    mov bx, ax ; mnozymy bx przez 10
+    ; DX:AX := AX ∗ r/m16)
+    add ax, cx
+    mov bx, ax ; w bx jest nasza cala liczba
+    jmp .reading
+.koniec:
+mov ax, bx
+pop dx
+pop cx
+pop bx
+ret

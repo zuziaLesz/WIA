@@ -9,17 +9,14 @@ start:
     mov ax, cx          ; Move the result to AX for printing
     call print_number   ; Print the result
 
-    ; Terminate program
     mov ah, 4Ch
     int 21h
 
 factorial:
-    ; Input: ax (number for which factorial is to be calculated)
-    ; Output: cx (result)
-    mov cx, 1            ; Initialize result to 1
+    mov cx, 1           
 
 factorial_loop:
-    cmp ax, 1
+    cmp ax, 1    ; cmp - porownuje
     jbe factorial_done   ; If ax <= 1, jump to the end
 
     ; Multiply result by current value of ax
@@ -34,8 +31,6 @@ factorial_done:
     ret
 
 print_number:
-    ; Input: ax (number to be printed)
-    ; Output: (prints the number)
     mov cx, 10
     mov bx, 0
 
@@ -44,9 +39,9 @@ print_loop:
     div cx
     add dl, '0'
     push dx
-    inc bx
+    inc bx ; add 1
     cmp ax, 0
-    jne print_loop
+    jne print_loop  ; jump if not equal
 
 print_digits:
     pop dx
